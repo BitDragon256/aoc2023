@@ -57,10 +57,6 @@ fn main() {
                     Ok(v) => lastNum = Some(v)
                 }
 
-                // if gameId == 29 && lastNum.is_some() {
-                //     println!("lastName: {}. {}, lastNum: {}", part, lastName.is_some(), lastNum.unwrap());
-                // }
-
                 if lastName.is_some() {
                     match lastName.unwrap() {
                         "red" => red = lastNum.unwrap(),
