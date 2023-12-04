@@ -35,40 +35,17 @@ fn win(card: String) -> u32 {
 
 fn main()
 {
-    let input = fs::read_to_string("day04.in").expect("FILE ERROR");
+    let input = fs::read_to_string("day04_t.in").expect("FILE ERROR");
     let splittedInput = input.split("\n");
     let mut indexableLines = Vec::new();
+    for line in splittedInput {
+        indexableLines.push(line);
+    }
 
     // part 1
     let mut sum = 0;
-    for line in splittedInput {
-        indexableLines.push(line);
-
-        let mut winningNumbers = Vec::new();
-        let mut ownNumbers = Vec::new();
-
-        let nums = line.split(" ");
-        let mut leftSide = true;
-        for num in nums {
-            if num == "" { continue; }
-            if num == "|" {
-                leftSide = false;
-            }
-            match num.parse::<i32>() {
-                Ok(number) => {
-                    if leftSide { winningNumbers.push(number); }
-                    else { ownNumbers.push(number); }
-                },
-                Err(_) => {}
-            }
-        }
-
-        let mut count = 0;
-        for ownNum in ownNumbers {
-            if winningNumbers.contains(&ownNum) {
-                count += 1;
-            }
-        }
+    for line in &indexableLines {
+        let count = win(line.to_string());
         let mut points = 0;
         if count > 0 {
             points = 1;
@@ -86,7 +63,6 @@ fn main()
     for i in 1..indexableLines.len()+1 {
         remaining.push(i);
     }
-    let mut known = Vec::new();
     while !remaining.is_empty() {
         index = remaining.pop().unwrap() as usize;
         let mut line = indexableLines[index-1];
