@@ -13,7 +13,7 @@ fn main()
     let mut numberLen: Vec<usize> = Vec::new();
     let mut isPart = [[false; SIZE]; SIZE];
 
-    let mut x: usize = 0;
+    let mut x: usize;
     let mut y: usize = 0;
     let mut curNum = 0;
     for line in splittedInput
